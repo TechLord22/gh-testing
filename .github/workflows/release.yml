@@ -7,7 +7,7 @@ on:
       releaseTag:
         description: 'Release Tag'
         required: true
-        defualt: 'v'
+        default: 'v'
 
 jobs:
   build:
@@ -26,9 +26,9 @@ jobs:
           ./gradlew build
       - name: Get Project Version
         id: getversion
-        run: ./gradlew getVersionFromJava
+        run: echo ::set-output name=version::$(./gradlew getVersionFromJava)
       - name: Test
-        run: cat ${{ steps.getversion.outputs }}
+        run: cat ${{ steps.getversion.outputs.version }}
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
