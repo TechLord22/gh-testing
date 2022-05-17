@@ -44,14 +44,13 @@ jobs:
         run: echo ::set-output name=version::$(./gradlew getVersionFromJava --q)
 
       - name: Get Project Changelog
-        id: getchangelog
-        run: echo ::set-output name=changelog::$(./gradlew getLatestChangelog --q)
+        run: ./gradlew getLatestChangelog --q
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.event.inputs.releaseTag }}
-          body: ${{ steps.getchangelog.outputs.changelog }}
+          body_path: CHANGELOG-current.md
           files: build/libs/gregtech-${{ steps.getversion.outputs.version }}.jar
           generate_release_notes: false
       

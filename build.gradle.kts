@@ -192,13 +192,13 @@ fun getVersionFromJava(file: File): String {
 
 fun getLatestChangelog(file: File): String {
     var split = file.readText().split("###")
-    return split[0] + "###" + split[1]
+    return split[0] + "###" + split[1].trim()
 }
 
 task<Exec>("getVersionFromJava") {
     commandLine("echo", version)
 }
 
-task<Exec>("getLatestChangelog") {
-    commandLine("printf", "'%q'", getLatestChangelog(file("CHANGELOG.md")))
+task("getLatestChangelog") {
+    File("CHANGELOG-current.md").writeText(getLatestChangelog(file("CHANGELOG.md")))
 }
