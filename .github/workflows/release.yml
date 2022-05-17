@@ -17,7 +17,7 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew build
-        run: ls
+      - run: ls
       - name: Get Project Version
         id: getversion
         run: ./gradlew getVersionFromJava
