@@ -27,8 +27,6 @@ jobs:
       - name: Get Project Version
         id: getversion
         run: echo ::set-output name=version::$(./gradlew getVersionFromJava --q)
-      - name: Test
-        run: cat ${{ steps.getversion.outputs.version }}
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
