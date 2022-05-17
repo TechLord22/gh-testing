@@ -192,7 +192,7 @@ fun getVersionFromJava(file: File): String {
 
 fun getLatestChangelog(file: File): String {
     var split = file.readText().split("###")
-    return split[0] + "###" + split[1].trim()
+    return split[0] + "### " + split[1].trim()
 }
 
 task<Exec>("getVersionFromJava") {
