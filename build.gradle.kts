@@ -191,7 +191,7 @@ fun getVersionFromJava(file: File): String {
 }
 
 fun getLatestChangelog(file: File): String {
-    val split = file.readText().split("###")
+    var split = file.readText().split("###")
     return split[0] + "###" + split[1]
 }
 
