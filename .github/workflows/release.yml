@@ -1,8 +1,6 @@
-name: check-format
+name: release
 
-on: 
-  workflow_dispatch:
-    branches: [ main ]
+on: [pull_request]
 
 jobs:
   build:
