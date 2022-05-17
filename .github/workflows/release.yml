@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     branches: [ test ]
     inputs:
-      release_tag:
+      releaseTag:
         description: 'Release Tag'
         required: true
         defualt: 'v'
@@ -30,4 +30,5 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ github.event.inputs.releaseTag }}
           files: build/libs/gregtech-${{ steps.getversion.outputs.version }}.jar
