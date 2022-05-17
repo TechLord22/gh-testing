@@ -5,9 +5,6 @@ indent_size = 4
 indent_style = space
 insert_final_newline = true
 tab_width = 4
-block_comment_start = /*
-block_comment = *
-block_comment_end = */
 ij_continuation_indent_size = 8
 ij_formatter_off_tag = @formatter:off
 ij_formatter_on_tag = @formatter:on
@@ -258,7 +255,7 @@ ij_java_wrap_comments = false
 ij_java_wrap_first_method_in_call_chain = false
 ij_java_wrap_long_lines = false
 
-[*.nbtt]
+[*.nbt]
 indent_size = 2
 ij_nbtt_keep_indents_on_empty_lines = false
 ij_nbtt_space_after_colon = true
