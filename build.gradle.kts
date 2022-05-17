@@ -155,11 +155,7 @@ idea {
     }
 }
 
-task<Exec>("getVersionFromJava") {
-    commandLine("echo", version)
-}
-
-fun getVersionFromJava(file: File): String  {
+fun getVersionFromJava(file: File): String {
     var major = "0"
     var minor = "0"
     var revision = "0"
@@ -192,4 +188,17 @@ fun getVersionFromJava(file: File): String  {
         return "$major.$minor.$revision-$extra"
     }
     return "$major.$minor.$revision"
+}
+
+fun getLatestChangelog(file: File): String {
+    val split = file.readText().split("###")
+    return split[0] + "###" + split[1]
+}
+
+task<Exec>("getVersionFromJava") {
+    commandLine("echo", version)
+}
+
+task<Exec>("getLatestChangelog") {
+    commandLine("echo", getLatestChangelog(file("CHANGELOG.md")))
 }

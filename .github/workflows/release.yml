@@ -1,4 +1,4 @@
-name: release
+name: Release
 
 on: 
   workflow_dispatch:
@@ -13,7 +13,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -43,10 +43,15 @@ jobs:
         id: getversion
         run: echo ::set-output name=version::$(./gradlew getVersionFromJava --q)
 
+      - name: Get Project Changelog
+        id: getchangelog
+        run: echo ::set-output name=changelog::$(./gradlew getLatestChangelog --q)
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.event.inputs.releaseTag }}
+          body: ${{ steps.getchangelog.outputs.changelog }}
           files: build/libs/gregtech-${{ steps.getversion.outputs.version }}.jar
           generate_release_notes: false
       
