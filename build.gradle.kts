@@ -200,5 +200,5 @@ task<Exec>("getVersionFromJava") {
 }
 
 task<Exec>("getLatestChangelog") {
-    commandLine("echo", getLatestChangelog(file("CHANGELOG.md")))
+    commandLine("printf", "'%q'", getLatestChangelog(file("CHANGELOG.md")))
 }
