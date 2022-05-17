@@ -29,6 +29,5 @@ jobs:
         run: ./gradlew getVersionFromJava
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: build/libs/gregtech-${{ steps.getversion.outputs.version }}.jar
