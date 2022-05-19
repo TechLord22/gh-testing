@@ -1,8 +1,8 @@
-name: Release
+name: Release to GitHub
 
 on: 
   workflow_dispatch:
-    branches: [ test ]
+    branches: [ master ]
     inputs:
       releaseTag:
         description: 'Release Tag'
@@ -53,7 +53,7 @@ jobs:
           body_path: CHANGELOG-current.md
           files: build/libs/gregtech-${{ steps.getversion.outputs.version }}.jar
           generate_release_notes: false
-      
+
       - name: Cleanup Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock

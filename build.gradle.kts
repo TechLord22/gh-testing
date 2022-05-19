@@ -190,15 +190,15 @@ fun getVersionFromJava(file: File): String {
     return "$major.$minor.$revision"
 }
 
-fun getLatestChangelog(file: File): String {
-    var split = file.readText().split("###")
-    return split[0] + "### " + split[1].trim()
-}
-
 task<Exec>("getVersionFromJava") {
     commandLine("echo", version)
 }
 
 task("getLatestChangelog") {
+    fun getLatestChangelog(file: File): String {
+        var split = file.readText().split("###")
+        return split[0] + "### " + split[1].trim()
+    }
+
     File("CHANGELOG-current.md").writeText(getLatestChangelog(file("CHANGELOG.md")))
 }
