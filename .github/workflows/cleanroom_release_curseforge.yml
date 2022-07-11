@@ -34,15 +34,28 @@ jobs:
         id: getversion
         run: echo ::set-output name=version::$(sed -n 's/^modVersion = \(.*\)/\1/p' < gradle.properties*)
 
-      - name: generate release notes
+      - name: Create Release Notes
         id: getchangelog
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          result-encoding: string
           script: |
-            const result = await github.request(`POST /repos/${{ github.repository }}/releases/generate-notes`, {
+            await github.request(`POST /repos/${{ github.repository }}/releases/generate-notes`, {
               tag_name: "v${{ steps.getversion.outputs.version }}",
               generate_release_notes: true
             })
-            console.log(result)
+        run: echo "${{ steps.getchangelog.outputs.result }}" < ${{ github.workspace }}-CHANGELOG-RAW.json
+
+      - name: Format Release Notes
+        run: |
+          echo ::set-output name=version::$(
+          grep -Po '"data":.*?[^\\]",' ${{ github.workspace }}-CHANGELOG-RAW.json < ${{ github.workspace }}-CHANGELOG-FORMATTED.txt &&
+          sed -n 's/^/'/\n/' +\(.*\)/\1/p' < ${{ github.workspace }}-CHANGELOG-FORMATTED.txt)
+
+      - name: Create CurseForge Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.getversion.outputs.version }}
+          files: build/libs/*.jar
+          body_path: ${{ github.workspace }}-CHANGELOG.txt
+          generate_release_notes: true
