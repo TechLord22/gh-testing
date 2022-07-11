@@ -34,7 +34,7 @@ jobs:
         id: get_version
         run: echo ::set-output name=version::$(sed -n 's/^modVersion = \(.*\)/\1/p' < gradle.properties*)
 
-      - name: Retrieve Release Notes from Tag
+      - name: Retrieve Release Notes from Release Tag
         id: get_release_tag
         uses: cardinalby/git-get-release-action@v1
         env:
@@ -52,7 +52,7 @@ jobs:
           game_versions: "Minecraft 1.12:1.12.2,Java 8,Forge"
           game_endpoint: "minecraft"
           release_type: "release"
-          changelog: ${{ steps.get_release_tag.outputs.body }}
+          changelog: "Changelog is available [here](${{ steps.get_release_tag.outputs.url }})."
           changelog_type: "markdown"
           file_path: build/libs/{{ steps.get_mod_name.outputs.name }}-{{ steps.get_version.outputs.version }}.jar
           project_id: "${{ secrets.CURSEFORGE_PROJECT_ID }}"
