@@ -1,4 +1,4 @@
-name: [Cleanroom] Release to GitHub
+name: Cleanroom Release to GitHub
 
 on: 
   workflow_dispatch
