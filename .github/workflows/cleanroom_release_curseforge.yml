@@ -30,13 +30,17 @@ jobs:
       #     chmod +x gradlew
       #     ./gradlew build
 
-      - name: Retrieve Release Notes from Tag
-        id: get_release_tag
-        uses: cardinalby/git-get-release-action@v1
-
       - name: Get Mod Version
         id: get_version
         run: echo ::set-output name=version::$(sed -n 's/^modVersion = \(.*\)/\1/p' < gradle.properties*)
+
+      - name: Retrieve Release Notes from Tag
+        id: get_release_tag
+        uses: cardinalby/git-get-release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          tag: v${{ steps.get_version.outputs.version }}
 
       - name: Get Mod Name
         id: get_mod_name
