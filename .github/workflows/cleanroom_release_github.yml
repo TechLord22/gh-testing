@@ -32,7 +32,7 @@ jobs:
 
       - name: Get Mod Version Name
         id: getversion
-        run: echo ::set-output name=version:: sed -n 's/^modVersion = \(.*\)/\1/p' < gradle.properties.disabled
+        run: echo ::set-output name=version::$(sed -n 's/^modVersion = \(.*\)/\1/p' < gradle.properties.disabled)
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
