@@ -1,5 +1,7 @@
+# Requires a Release on GitHub of the current version
 name: Cleanroom Release to Curseforge
 
+# manually run, or automatically after the GitHub release is done
 on: 
   workflow_dispatch:
   workflow_run:
