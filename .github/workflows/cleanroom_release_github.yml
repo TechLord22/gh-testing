@@ -33,7 +33,7 @@ jobs:
           chmod +x gradlew
           ./gradlew build
 
-      - name: Get Mod Version Name
+      - name: Get Mod Version
         id: getversion
         run: echo ::set-output name=version::$(sed -n 's/^modVersion = \(.*\)/\1/p' < gradle.properties.disabled)
 
