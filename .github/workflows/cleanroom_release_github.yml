@@ -1,7 +1,7 @@
 name: Cleanroom Release to GitHub
 
 on: 
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   release:
