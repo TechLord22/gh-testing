@@ -44,5 +44,5 @@ jobs:
             const result = await github.request(`POST /repos/%{{ github.repository }}/releases/generate-notes`, {
               tag_name: "v${{ steps.getversion.outputs.version }}",
               generate_release_notes: true
-            }))
+            })
             console.log(result)
