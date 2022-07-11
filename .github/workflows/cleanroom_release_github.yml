@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       label:
-        description: 'Preprended Label'
+        description: 'Pre-prended Label'
         required: false
 
 jobs:
