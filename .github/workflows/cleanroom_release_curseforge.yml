@@ -34,6 +34,10 @@ jobs:
         id: get_version
         run: echo ::set-output name=version::$(sed -n 's/^modVersion = \(.*\)/\1/p' < gradle.properties*)
 
+      - name: Get Mod Name
+        id: get_mod_name
+        run: echo ::set-output name=version::$(sed -n 's/^modBaseName = \(.*\)/\1/p' < gradle.properties*)
+
       - name: Retrieve Release Notes from Release Tag
         id: get_release_tag
         uses: cardinalby/git-get-release-action@v1
@@ -41,10 +45,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           tag: v${{ steps.get_version.outputs.version }}
-
-      - name: Get Mod Name
-        id: get_mod_name
-        run: echo ::set-output name=version::$(sed -n 's/^modBaseName = \(.*\)/\1/p' < gradle.properties*)
 
       - name: Create CurseForge Release
         uses: itsmeow/curseforge-upload@v3
