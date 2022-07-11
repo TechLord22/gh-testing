@@ -41,7 +41,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           result-encoding: string
           script: |
-            const result = await github.request(`POST /repos/%{{ github.repository }}/releases/generate-notes`, {
+            const result = await github.request(`POST /repos/${{ github.repository }}/releases/generate-notes`, {
               tag_name: "v${{ steps.getversion.outputs.version }}",
               generate_release_notes: true
             })
