@@ -40,11 +40,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            await github.request(`POST /repos/${{ github.repository }}/releases/generate-notes`, {
+            const result = await github.request(`POST /repos/${{ github.repository }}/releases/generate-notes`, {
               tag_name: "v${{ steps.getversion.outputs.version }}",
               generate_release_notes: true
             })
-        run: echo "${{ steps.getchangelog.outputs.result }}" < ${{ github.workspace }}-CHANGELOG-RAW.json
+            console.log(result)
 
       - name: Format Release Notes
         run: |
