@@ -10,25 +10,25 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # - name: Set up JDK 8
-      #   uses: actions/setup-java@v2
-      #   with:
-      #     java-version: '8'
-      #     distribution: 'adopt'
+      - name: Set up JDK 8
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
 
-      # - name: Use Cached Gradle Packages
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: |
-      #       ~/.gradle/caches
-      #       ~/.gradle/wrapper
-      #     key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle.properties*') }}
-      #     restore-keys: ${{ runner.os }}-gradle-
+      - name: Use Cached Gradle Packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle.properties*') }}
+          restore-keys: ${{ runner.os }}-gradle-
 
-      # - name: Build with Gradle
-      #   run: |
-      #     chmod +x gradlew
-      #     ./gradlew build
+      - name: Build with Gradle
+        run: |
+          chmod +x gradlew
+          ./gradlew build
 
       - name: Get Mod Version
         id: get_version
@@ -47,7 +47,7 @@ jobs:
         run: echo ::set-output name=version::$(sed -n 's/^modBaseName = \(.*\)/\1/p' < gradle.properties*)
 
       - name: Create CurseForge Release
-        uses: softprops/action-gh-release@v1
+        uses: itsmeow/curseforge-upload@v3
         with:
           game_versions: "Minecraft 1.12:1.12.2,Java 8,Forge"
           game_endpoint: "minecraft"
