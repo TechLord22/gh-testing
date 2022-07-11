@@ -25,7 +25,7 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle.properties') }}
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle.properties*') }}
           restore-keys: ${{ runner.os }}-gradle-
 
       - name: Build with Gradle
@@ -35,7 +35,7 @@ jobs:
 
       - name: Get Mod Version
         id: getversion
-        run: echo ::set-output name=version::$(sed -n 's/^modVersion = \(.*\)/\1/p' < gradle.properties.disabled)
+        run: echo ::set-output name=version::$(sed -n 's/^modVersion = \(.*\)/\1/p' < gradle.properties*)
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
