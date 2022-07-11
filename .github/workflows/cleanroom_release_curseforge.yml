@@ -3,7 +3,7 @@ name: Cleanroom Release to Curseforge
 on: 
   workflow_dispatch:
   workflow_run:
-    workflows: ["cleanroom_release_github"]
+    workflows: ["Cleanroom Release to GitHub"]
     types:
       - completed
 
