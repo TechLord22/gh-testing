@@ -43,5 +43,5 @@ jobs:
         with:
           tag_name: v${{ steps.get_version.outputs.version }}
           files: build/libs/*.jar
-          body: "${{ github.event.inputs.label }}\n"
+          body: "**${{ github.event.inputs.label }}**\n"
           generate_release_notes: true
