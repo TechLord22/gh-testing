@@ -30,32 +30,26 @@ jobs:
       #     chmod +x gradlew
       #     ./gradlew build
 
+      - name: Retrieve Release Notes from Tag
+        id: get_release_tag
+        uses: cardinalby/git-get-release-action@v1
+
       - name: Get Mod Version
-        id: getversion
+        id: get_version
         run: echo ::set-output name=version::$(sed -n 's/^modVersion = \(.*\)/\1/p' < gradle.properties*)
 
-      - name: Create Release Notes
-        id: getchangelog
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const result = await github.request(`POST /repos/${{ github.repository }}/releases/generate-notes`, {
-              tag_name: "v${{ steps.getversion.outputs.version }}",
-              generate_release_notes: true
-            })
-            console.log(result)
-
-      - name: Format Release Notes
-        run: |
-          echo ::set-output name=version::$(
-          grep -Po '"data":.*?[^\\]",' ${{ github.workspace }}-CHANGELOG-RAW.json < ${{ github.workspace }}-CHANGELOG-FORMATTED.txt &&
-          sed -n 's/^/'/\n/' +\(.*\)/\1/p' < ${{ github.workspace }}-CHANGELOG-FORMATTED.txt)
+      - name: Get Mod Name
+        id: get_mod_name
+        run: echo ::set-output name=version::$(sed -n 's/^modBaseName = \(.*\)/\1/p' < gradle.properties*)
 
       - name: Create CurseForge Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ steps.getversion.outputs.version }}
-          files: build/libs/*.jar
-          body_path: ${{ github.workspace }}-CHANGELOG.txt
-          generate_release_notes: true
+          game_versions: "Minecraft 1.12:1.12.2,Java 8,Forge"
+          game_endpoint: "minecraft"
+          release_type: "release"
+          changelog: ${{ steps.get_release_tag.outputs.body }}
+          changelog_type: "markdown"
+          file_path: build/libs/{{ steps.get_mod_name.outputs.name }}-{{ steps.get_version.outputs.version }}.jar
+          project_id: "${{ secrets.CURSEFORGE_PROJECT_ID }}"
+          token: "${{ secrets.CURSEFORGE_API_KEY }}"

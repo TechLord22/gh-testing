@@ -3,9 +3,6 @@ name: Cleanroom Release to GitHub
 on: 
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -34,12 +31,12 @@ jobs:
           ./gradlew build
 
       - name: Get Mod Version
-        id: getversion
+        id: get_version
         run: echo ::set-output name=version::$(sed -n 's/^modVersion = \(.*\)/\1/p' < gradle.properties*)
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ steps.getversion.outputs.version }}
+          tag_name: v${{ steps.get_version.outputs.version }}
           files: build/libs/*.jar
           generate_release_notes: true
