@@ -15,3 +15,4 @@ _This section is for screenshots to demonstrate any GUI or rendering changes, or
 ## Potential Compatibility Issues
 _This section is for defining possible compatibility issues. It must be used when there are API changes, item/block/material/machine changes, or recipe changes._
 
+**Please fill in as much useful information as possible. Also, please remove all unused sections, including this and the other explanations.**
