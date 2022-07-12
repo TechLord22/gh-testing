@@ -18,7 +18,7 @@ body:
     attributes:
       label: Related Problem
       description: If the feature you wish to change is related to a problem, please desscribe it. Leave this field blank if it is not related to a problem.
-      placeholder: "Example: I'm always frustrated when... etc."
+      placeholder: "Example: I'm always frustrated when..."
     validations:
       required: false
   - type: textarea
@@ -26,7 +26,7 @@ body:
     attributes:
       label: Your Solution
       description: Describe the solution you would like to have happen.
-      placeholder: "Example: I want to be able to... etc."
+      placeholder: "Example: If I could..."
     validations:
       required: true
   - type: textarea
