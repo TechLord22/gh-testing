@@ -49,8 +49,8 @@ body:
       label: New Worlds
       description: Does this bug occur on a newly generated world?
       options:
-      - Yes
-      - No
+      - "Yes"
+      - "No"
       - Did not check
     validations:
       required: true
@@ -60,8 +60,8 @@ body:
       label: Cross-Mod Interaction
       description: Does this bug occur because of another mod installed alongside GregTech CEu?
       options:
-        - Yes
-        - No
+        - "Yes"
+        - "No"
         - Unsure
     validations:
       required: true
