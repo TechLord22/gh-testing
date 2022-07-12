@@ -2,9 +2,6 @@ name: Bug Report
 description: Report a bug where something is not working as expected, which does not crash the game.
 labels: ["status: unverified", "type: bug"]
 body:
-  - type: markdown
-    attributes:
-      value: Thank you for taking the time to fill out this bug report.
   - type: input
     id: version
     attributes:
@@ -97,3 +94,6 @@ body:
       placeholder: "Example: This is likely caused by X because..."
     validations:
       required: false
+  - type: markdown
+    attributes:
+      value: Thank you for taking the time to fill out this bug report.

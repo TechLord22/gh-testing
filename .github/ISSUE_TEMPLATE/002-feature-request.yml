@@ -2,9 +2,6 @@ name: Request a Feature
 description: Request a new feature or a change to an existing one.
 labels: ["status: unverified", "type: bug", "type: crash"]
 body:
-  - type: markdown
-    attributes:
-      value: Thank you for taking the time to fill out this feature request.
   - type: input
     id: version
     attributes:
@@ -37,3 +34,6 @@ body:
       placeholder: "Example: This is likely achieveable by doing X because..."
     validations:
       required: false
+  - type: markdown
+    attributes:
+      value: Thank you for taking the time to fill out this feature request.

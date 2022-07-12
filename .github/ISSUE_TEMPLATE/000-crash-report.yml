@@ -2,9 +2,6 @@ name: Crash Report
 description: Report a bug that crashes the game or prevents startup.
 labels: ["status: unverified", "type: bug", "type: crash"]
 body:
-  - type: markdown
-    attributes:
-      value: Thank you for taking the time to fill out this crash report.
   - type: input
     id: version
     attributes:
@@ -89,3 +86,6 @@ body:
       placeholder: "Example: This is likely caused by X because..."
     validations:
       required: false
+  - type: markdown
+    attributes:
+      value: Thank you for taking the time to fill out this crash report.
