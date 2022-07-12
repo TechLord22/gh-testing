@@ -18,7 +18,7 @@ body:
     id: modpack
     attributes:
       label: Modpack Used
-      description: The modpack and modpack version used when this bug was encountered. If you were not using a modpack, please leave this field blank.
+      description: The modpack and its version used when this bug was encountered. If you were not using a modpack, please leave this field blank.
       placeholder: "Example: GregTech Community Modpack v1.2.3"
     validations:
       required: false
@@ -30,17 +30,18 @@ body:
       placeholder: "Example: Gregicality Multiblocks v1.2.3"
     validations:
       required: false
-  - type: checkboxes
+  - type: dropdown
     id: environment
     attributes:
       label: Environment
       description: How you were playing on the world. Open to LAN means you did not start the world with dedicated server software, and used the in-game pause menu to start it.
       options:
-      - label: Singleplayer
-      - label: Open to LAN
-      - label: Base Forge Server
-      - label: Sponge
-      - label: Mohist
+      - Singleplayer
+      - Open to LAN
+      - Base Forge Server
+      - Sponge
+      - Mohist
+      - Other
     validations:
       required: true
   - type: dropdown
