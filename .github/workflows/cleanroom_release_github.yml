@@ -21,12 +21,12 @@ jobs:
 
       - name: Get Previous tag
         id: previous_tag
-        uses: echo ::set-output name=tag::$(git describe --abbrev=0 --tags)
+        run: echo ::set-output name=tag::$(git describe --abbrev=0 --tags)
 
       # exit CI early as a failure if creating this release clashes with the previous version
       - name: Check if Version Bump is Needed
         if: v${{ steps.get_version.outputs.version }} != ${{ steps.previous_tag.outputs.tag }}
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           script: core.setFailed("A version bump is required!")
 
