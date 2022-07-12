@@ -27,7 +27,7 @@ jobs:
  
       # exit CI early as a failure if creating this release clashes with the previous version
       - name: Check if Version Bump is Needed
-        if: v${{ steps.get_version.outputs.version }} == ${{ steps.previous_tag.outputs.release }}
+        if: ${{ v${{ steps.get_version.outputs.version }} == ${{ steps.previous_tag.outputs.release }} }}
         uses: actions/github-script@v6
         with:
           script: core.setFailed("A version bump from ${{ steps.previous_tag.outputs.release }} is required!")
