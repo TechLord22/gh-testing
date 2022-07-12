@@ -21,7 +21,7 @@ jobs:
 
       - name: Get Previous tag
         id: previous_tag
-        run: echo ::set-output name=tag::$(git describe --abbrev=0 --tags)
+        run: echo ::set-output name=tag::$(git tag | grep -E '^v[0-9]' | sort -V | tail -1)
 
       # exit CI early as a failure if creating this release clashes with the previous version
       - name: Check if Version Bump is Needed
