@@ -1,11 +1,10 @@
-name: Bug Report
-description: Something is not working as expected
-title: "[BUG] "
-labels: ["status: unverified", "type: bug"]
+name: Crash Report
+description: Report a bug that crashes the game or prevents startup.
+labels: ["status: unverified", "type: bug", "type: crash"]
 body:
   - type: markdown
     attributes:
-      value: Thank you for taking the time to fill out this bug report.
+      value: Thank you for taking the time to fill out this crash report.
   - type: input
     id: version
     attributes:
@@ -45,49 +44,41 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: crash
+    attributes:
+      label: Side Crashed
+      description: Where the game crashed.
+      options:
+      - "Client"
+      - "Server"
+      - "Client and Server"
+    validations:
+      required: true
+  - type: dropdown
     id: world
     attributes:
       label: New Worlds
-      description: Does this bug occur on a newly generated world?
+      description: Does this crash occur on a newly generated world?
       options:
       - "Yes"
       - "No"
       - Did not check
     validations:
       required: true
-  - type: dropdown
-    id: cross-mod
-    attributes:
-      label: Cross-Mod Interaction
-      description: Does this bug occur because of another mod installed alongside GregTech CEu?
-      options:
-        - "Yes"
-        - "No"
-        - Unsure
-    validations:
-      required: true
-  - type: textarea
-    id: expected
-    attributes:
-      label: Expected Behavior
-      description: What you expected to happen. Attach screenshots here as necessary.
-      placeholder: "Example: Expected to produce X by consuming Y."
-    validations:
-      required: true
-  - type: textarea
-    id: result
-    attributes:
-      label: Actual Behavior
-      description: What happened despite your expectations. Attach screenshots here as necessary.
-      placeholder: "Example: Produced one X but Y was not consumed."
-    validations:
-      required: true
   - type: textarea
     id: reproduction
     attributes:
       label: Steps to Reproduce
-      description: How to reproduce the bug.
+      description: How to reproduce the crash.
       placeholder: "Example: 1) I did X... etc."
+    validations:
+      required: true
+  - type: textarea
+    id: crash-report
+    attributes:
+      label: Crash Report
+      description: You can find the crash report in `installation/crash-reports/`, if one was created. Additionally, please attach `installation/logs/latest.log`. If either or both files do not exist, state such. You can add these files by dragging them into the text box below, or linking to a paste site with their content. **Do not** paste the contents of either these files directly into the text box.
+      placeholder: "Example: GitHub gists or similar, OR submit the file directly by dragging it onto this textbox."
     validations:
       required: true
   - type: textarea
