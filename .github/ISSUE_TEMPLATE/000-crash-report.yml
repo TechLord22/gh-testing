@@ -77,8 +77,8 @@ body:
     id: crash-report
     attributes:
       label: Crash Report
-      description: You can find the crash report in `installation/crash-reports/`, if one was created. Additionally, please attach `installation/logs/latest.log`. If either or both files do not exist, state such. You can add these files by dragging them into the text box below, or linking to a paste site with their content. **Do not paste the contents of either these files directly into the text box.
-      placeholder: "Example: GitHub gists or similar, OR submit the file directly by dragging it onto this textbox.**"
+      description: "You can find the crash report in `installation/crash-reports/`, if one was created. Additionally, please attach `installation/logs/latest.log`. If either or both files do not exist, state such. You can add these files by dragging them into the text box below, or linking to a paste site with their content. **Do not paste the contents of either these files directly into the text box.**"
+      placeholder: "Example: GitHub gists or similar, OR submit the file directly by dragging it onto this textbox."
     validations:
       required: true
   - type: textarea
