@@ -28,7 +28,7 @@ jobs:
         if: v${{ steps.get_version.outputs.version }} != ${{ steps.previous_tag.outputs.tag }}
         uses: actions/github-script@v6
         with:
-          script: core.setFailed("A version bump is required!")
+          script: core.setFailed("A version bump from ${{ steps.previous_tag.outputs.tag }}$ is required!")
 
       - name: Set up JDK 8
         uses: actions/setup-java@v2

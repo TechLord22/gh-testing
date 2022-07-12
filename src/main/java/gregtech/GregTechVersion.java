@@ -3,11 +3,11 @@ package gregtech;
 @SuppressWarnings("unused")
 public final class GregTechVersion {
 
-    public static final int MAJOR = 2;
+    public static final int MAJOR = 4;
     //This number is incremented every major feature update
-    public static final int MINOR = 2;
+    public static final int MINOR = 0;
     //This number is incremented every time the feature is added, or bug is fixed. resets every major version change
-    public static final int REVISION = 3;
+    public static final int REVISION = 6;
     //This String is for additional info on the release version if needed (like alpha, beta, rc). Comment out when unused
     public static final String EXTRA = "beta";
     //This is the String formatted version, used in builds
